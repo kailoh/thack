@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .page-header
+    h3 All Flights
+
+    for flight in flights
+      h3 Flight Details
+      ul
+        li= flight.origin
+        li=flight.destination
+        li=flight.carbon
+        li=flight.distance
+        li=flight.price
+        li=flight.departureDate
+        li=flight.arrivalDate
