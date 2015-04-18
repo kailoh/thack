@@ -26,7 +26,7 @@
     "fbgraph": "^0.3.0",
     "jade": "^1.9.2",
     "less": "^2.5.0",
-    "lodash": "^3.6.0", //A JavaScript utility library delivering consistency, modularity, performance, & extras.
+    "lodash": "^3.6.0", //Js utility library
     "lusca": "^1.0.3", //a free module created by Paypal to quickly add and configure various security features such as CSP and HSTS
     "method-override": "^2.3.2",
     "mongoose": "^4.0.1",
