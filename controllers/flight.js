@@ -7,7 +7,8 @@ exports.getFlights = function(req, res) {
   });
 };
 
-exports.postFlights = function(req, res, next) {
+exports.postFlight = function(req, res, next) {
   console.log("POST FLIGHTS RECEIVED");
   console.log(req);
+  res.end('Thanks for submitting a flight. It worked!');
 };
