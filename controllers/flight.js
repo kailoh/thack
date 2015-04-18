@@ -6,3 +6,8 @@ exports.getFlights = function(req, res) {
     console.log(docs);
   });
 };
+
+exports.postFlights = function(req, res, next) {
+  console.log("POST FLIGHTS RECEIVED");
+  console.log(req);
+};

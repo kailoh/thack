@@ -8,7 +8,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
-var lusca = require('lusca');
 var methodOverride = require('method-override');
 var multer  = require('multer');
 
@@ -84,11 +83,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(lusca({
-  csrf: true,
-  xframe: 'SAMEORIGIN',
-  xssProtection: true
-}));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -145,7 +139,11 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
   res.redirect(req.session.returnTo || '/');
 });
 
-app.route('/flights').get(flightController.getFlights);
+/**
+Custom app routes
+**/
+app.get('/flights', flightController.getFlights);
+app.post('/flights', flightController.postFlight);
 
 /**
  * Error Handler.
