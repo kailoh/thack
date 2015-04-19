@@ -9,6 +9,9 @@ exports.getFlights = function(req, res) {
 
 exports.postFlight = function(req, res, next) {
   console.log("POST FLIGHTS RECEIVED");
-  console.log(req.body);
+  console.log("POST BODY: " + req.body);
+  console.log("POST PARAMS: " + req.params);
+  console.log("POST QUERY: " + req.query);
+  console.log("POST HEADER: " + req.headers);
   res.end('Thanks for submitting a flight. It worked!');
 };
