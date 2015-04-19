@@ -114,7 +114,7 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         var airportCodeArray = val.replace(/<\/?airport-code>/g,'');
         origin = airportCodeArray[0];
         destination = airportCodeArray[1];
-        console.log("My origin: " + origin);
+        // console.log("My origin: " + origin);
       });
 
       data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
@@ -142,17 +142,16 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         long1 = longArray[1];
       });
 
-      console.log("lat0: " + lat0);
-      console.log("lat1: " + lat1);
-      console.log("long0: " + long0);
-      console.log("long1: " + long1);
+      // console.log("lat0: " + lat0);
+      // console.log("lat1: " + lat1);
+      // console.log("long0: " + long0);
+      // console.log("long1: " + long1);
 
       distance = calculateDistance(lat0, long0, lat1, long1);
 
       data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
         var durationArray = val.replace(/<\/?duration>/g,'');
         duration = durationArray[0];
-        console.log()
       });
 
       data.match(/<total-cost>(.*?)<\/total-cost>/g).map(function(val){
@@ -160,15 +159,15 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         price = costArray[0];
       });
 
-      console.log("Here's the parsed data:");
-      console.log("origin: " + origin);
-      console.log("destination: " + destination);
-      console.log("distance: " + distance);
+      // console.log("Here's the parsed data:");
+      // console.log("origin: " + origin);
+      // console.log("destination: " + destination);
+      // console.log("distance: " + distance);
       console.log("price: " + price);
-      console.log("carbon: " + carbon);
-      console.log("departureDate: " + departureDate);
-      console.log("arrivalDate: " + arrivalDate);
-      console.log("duration: " + duration);
+      // console.log("carbon: " + carbon);
+      // console.log("departureDate: " + departureDate);
+      // console.log("arrivalDate: " + arrivalDate);
+      // console.log("duration: " + duration);
     });
   }
 }));
