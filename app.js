@@ -71,6 +71,23 @@
  app.use(bodyParser.urlencoded({ extended: true }));
 
 
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    var radlat1 = Math.PI * lat1/180
+    var radlat2 = Math.PI * lat2/180
+    var radlon1 = Math.PI * lon1/180
+    var radlon2 = Math.PI * lon2/180
+    var theta = lon1-lon2
+    var radtheta = Math.PI * theta/180
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist)
+    dist = dist * 180/Math.PI
+    dist = dist * 60 * 1.1515
+    return dist
+}
+
+
+
+
 app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
   onFileUploadComplete: function (file, req, res) {
@@ -82,7 +99,7 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         return console.log(err);
       }
       console.log(data);
-      
+
       var origin;
       var destination;
       var distance;
@@ -90,6 +107,7 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       var carbon;
       var departureDate;
       var arrivalDate;
+      var duration;
 
       data.match(/<airport-code>(.*?)<\/airport-code>/g).map(function(val){
         var airportCodeArray = val.replace(/<\/?airport-code>/g,'');
@@ -108,12 +126,42 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         arrivalDate = dateTimeArray[1];
       });
 
-      data.match(/<distance-in-miles>(.*?)<\/distance-in-miles>/g).map(function(val){
-        var distanceArray = val.replace(/<\/?distance-in-miles>/g,'');
-        distance = distanceArray[0];
+      var lat0, lat1, long0, long1;
+
+      data.match(/<latitude>(.*?)<\/latitude>/g).map(function(val){
+        var latArray = val.replace(/<\/?latitude>/g,'');
+        lat0 = latArray[0];
+        lat1 = latArray[1];
       });
 
+      data.match(/<longitude>(.*?)<\/longitude>/g).map(function(val){
+        var longArray = val.replace(/<\/?longitude>/g,'');
+        long0 = longArray[0];
+        long1 = longArray[1];
+      });
 
+      distance = calculateDistance(lat1, long1, lat2, long2);
+
+
+      data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
+        var durationArray = val.replace(/<\/?duration>/g,'');
+        duration = durationArray[0];
+      });
+
+      data.match(/<total-cost>(.*?)<\/total-cost>/g).map(function(val){
+        var costArray = val.replace(/<\/?total-cost>/g,'');
+        price = costArray[0];
+      });
+
+      console.log("Here's the parsed data:");
+      console.log("origin: " + origin);
+      console.log("destination: " + destination);
+      console.log("distance: " + distance);
+      console.log("price: " + price);
+      console.log("carbon: " + carbon);
+      console.log("departureDate: " + departureDate);
+      console.log("arrivalDate: " + arrivalDate);
+      console.log("duration: " + duration);
     });
   }
 }));

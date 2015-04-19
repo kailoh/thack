@@ -9,7 +9,9 @@ var Flight = new Schema({
 	price: { type: Number}, //price of flight
 	carbon: { type: Number}, //carbon emissions
 	departureDate: { type: Date },
-	arrivalDate: { type: Date }
+	arrivalDate: { type: Date },
+	duration: { type: Number }, //in # of minutes
+	// airlineCode: { type: String }
 });
 
 module.exports = {
