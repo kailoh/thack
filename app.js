@@ -110,10 +110,15 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       var arrivalDate;
       var duration;
 
-      air0 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[0];
-      air1 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[1];
+      var air0 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[0];
+      var air1 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[1];
       origin = air0.replace(/<\/?airport-code>/g,'');
       destination = air1.replace(/<\/?airport-code>/g,'');
+
+      var dep = data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g)[0];
+      var arr = data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g)[1];
+      departureDate = dep.replace(/<\/?utc-date-time>/g,'');
+      arrivalDate = arr.replace(/<\/?utc-date-time>/g,'');
 
       data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g).map(function(val){
         var dateTimeArray = val.replace(/<\/?utc-date-time>/g,'');

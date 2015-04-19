@@ -1,0 +1,94 @@
+<!doctype HTML>
+<html>
+<head>
+  <style>
+  body{
+    background-color: rgb(136, 191, 191);
+    padding: 0;
+    margin: 0;
+}
+.rock-graphbox{
+    vertical-align: top;
+  background-color: rgb(75, 191, 191);
+  height: 100%;
+  width: 75%;
+    padding: 0;
+}
+.rock-left-column{
+    background-color: blue;
+    height: 100%;
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+}
+.rock-column{
+    vertical-align: top;
+    background-color: yellow;
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    border: 1px solid black;
+    margin: 0;
+    right: 0;
+}
+.rock-smallbox{
+  background-color: purple;
+  height: 25%;
+  width: 100%;
+    line-height: 180px;
+    text-align: center;
+  font: small-caps bolder 16px "Verdana", "Tahoma", sans-serif;
+    border-bottom: 1px solid black;
+}
+.rock-smallbox:hover{
+  background-color: red;
+}
+</style>
+<script src="https://www.google.com/jsapi?ext.js"></script>
+<script>
+google.load("visualization", "1.1", {packages:["bar"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales'],
+          ['Jan', 1000],
+          ['Feb', 1170],
+          ['Mar', 660]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Company Performance'
+          },
+          bar: { groupWidth: "95%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('rock-left'));
+
+        chart.draw(data, options);
+      }
+</script>
+</head>
+
+<body>
+  <div class="rock-graphbox">
+    <div class="rock-left-column" id="rock-left"></div>
+  	<div class="rock-column">
+      <div class="rock-smallbox">
+    	Carbon Emissions
+      </div>	
+      <div class="rock-smallbox">
+        Dollars
+      </div>
+      <div class="rock-smallbox">
+        Miles Flown
+      </div>
+      <div class="rock-smallbox">
+        Reward Points
+      </div>
+    </div>
+  </div>
+</body>
+</html>
