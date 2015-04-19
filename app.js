@@ -110,13 +110,10 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       var arrivalDate;
       var duration;
 
-      data.match(/<airport-code>(.*?)<\/airport-code>/g).map(function(val){
-        var airportCodeArray = val.replace(/<\/?airport-code>/g,'');
-        origin = airportCodeArray[0];
-        destination = airportCodeArray[1];
-        // console.log("My origin: " + origin);
-      });
-
+      air0 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[0];
+      air1 = data.match(/<airport-code>(.*?)<\/airport-code>/g)[1];
+      origin = air0.replace(/<\/?airport-code>/g,'');
+      destination = air1.replace(/<\/?airport-code>/g,'');
 
       data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g).map(function(val){
         var dateTimeArray = val.replace(/<\/?utc-date-time>/g,'');
@@ -146,18 +143,16 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       distance = calculateDistance(lat0, long0, lat1, long1);
 
       data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
-        var durationArray = val.replace(/<\/?duration>/g,'');
-        duration = durationArray[0];
+        duration = val.replace(/<\/?duration>/g,'');
       });
 
       data.match(/<total-cost>(.*?)<\/total-cost>/g).map(function(val){
-        var costArray = val.replace(/<\/?total-cost>/g,'');
-        price = costArray;
+        price = val.replace(/<\/?total-cost>/g,'');
       });
 
       // console.log("Here's the parsed data:");
-      // console.log("origin: " + origin);
-      // console.log("destination: " + destination);
+      console.log("origin: " + origin);
+      console.log("destination: " + destination);
       // console.log("distance: " + distance);
       console.log("price: " + price);
       // console.log("carbon: " + carbon);
