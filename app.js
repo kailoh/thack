@@ -69,13 +69,13 @@ app.use(connectAssets({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(multer({ dest: path.join(__dirname, 'uploads'),
+app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
-// onFileUploadComplete: function (file, req, res) {
-//   console.log(file.fieldname + ' uploaded to  ' + file.path);
-// }
+onFileUploadComplete: function (file, req, res) {
+  console.log(file.fieldname + ' uploaded to  ' + file.path);
+}
 
-//  }));
+ }));
 app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
