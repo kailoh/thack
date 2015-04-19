@@ -140,7 +140,7 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         long1 = longArray[1];
       });
 
-      distance = calculateDistance(lat1, long1, lat2, long2);
+      distance = calculateDistance(lat0, long0, lat1, long1);
 
 
       data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
