@@ -79,7 +79,12 @@ onFileUploadComplete: function (file, req, res) {
     if (err) {
       return console.log(err);
     }
-    console.log(data);
+    //onsole.log(data);
+
+    var airportCode = data.match(/<airport-code>(.*?)<\/airport-code>/g).map(function(val){
+   console.log(val.replace(/<\/?airport-code>/g,''));
+  });
+
   });
 
 }
