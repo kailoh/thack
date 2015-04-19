@@ -117,10 +117,6 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         // console.log("My origin: " + origin);
       });
 
-      data.match(/<duration>(.*?)<\/duration>/g).map(function(val){
-        var durationArray = val.replace(/<\/?duration>/g,'');
-        duration = durationArray[0];
-      });
 
       data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g).map(function(val){
         var dateTimeArray = val.replace(/<\/?utc-date-time>/g,'');
@@ -156,7 +152,7 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
       data.match(/<total-cost>(.*?)<\/total-cost>/g).map(function(val){
         var costArray = val.replace(/<\/?total-cost>/g,'');
-        price = costArray[0];
+        price = costArray;
       });
 
       // console.log("Here's the parsed data:");
