@@ -3,15 +3,16 @@ var mongoose = require('mongoose'),
 	ObjectId = Schema.ObjectId;
 
 var Flight = new Schema({
-	origin: { type : String}, //airport code
-	destination: { type : String} , //airport code
-	distance: { type : Number}, //distance in miles
-	price: { type: Number}, //price of flight
-	carbon: { type: Number}, //carbon emissions
+	origin: { type : String }, //airport code
+	destination: { type : String } , //airport code
+	distance: { type : Number }, //distance in miles
+	price: { type: Number } , //price of flight
+	carbon: { type: Number }, //carbon emissions
 	departureDate: { type: Date },
 	arrivalDate: { type: Date },
 	duration: { type: Number }, //in # of minutes
-	// airlineCode: { type: String }
+	airline: { type: String }, //name of airline
+	rewards: { type: Number }, //# of reward miles
 });
 
 module.exports = {
