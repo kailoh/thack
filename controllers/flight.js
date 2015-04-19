@@ -17,6 +17,9 @@ exports.postFlight = function(req, res, next) {
 	var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
       console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+      if (mimetype=='application/xml') {
+      	console.log("THIS IS THE ONE");
+      }
       file.on('data', function(data) {
         console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
       });
