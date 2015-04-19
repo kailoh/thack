@@ -73,6 +73,15 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
 onFileUploadComplete: function (file, req, res) {
   console.log(file.fieldname + ' uploaded to  ' + file.path);
+
+  fs = require('fs')
+  fs.readFile(file.path, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(data);
+  });
+
 }
 
  }));
