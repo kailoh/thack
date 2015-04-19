@@ -41,6 +41,8 @@
  */
  var app = express();
 
+ var flight = require('./models/Flight');
+
 /**
  * Connect to MongoDB.
  */
