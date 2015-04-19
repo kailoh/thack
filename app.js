@@ -147,10 +147,26 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       console.log("destination: " + destination);
       console.log("distance: " + distance);
       console.log("price: " + price);
-      console.log("carbon: " + carbon);
+      console.log("carbon: " + distance*5);
       console.log("departureDate: " + departureDate);
       console.log("arrivalDate: " + arrivalDate);
       console.log("duration: " + duration);
+
+      //save the flight
+      var newFlight = new flight.Flight({
+          origin : origin,
+          destination : destination,
+          distance : distance,
+          price : price,
+          carbon : carbon,
+          departureDate: departureDate,
+          arrivalDate: arrivalDate,
+        });
+
+        newFlight.save(function(err, flight){
+          console.log('Successfully inserted flight: ' + flight._id);
+        });
+
     });
   }
 }));
