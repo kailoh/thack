@@ -120,30 +120,17 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
       departureDate = dep.replace(/<\/?utc-date-time>/g,'');
       arrivalDate = arr.replace(/<\/?utc-date-time>/g,'');
 
-      data.match(/<utc-date-time>(.*?)<\/utc-date-time>/g).map(function(val){
-        var dateTimeArray = val.replace(/<\/?utc-date-time>/g,'');
-        departureDate = dateTimeArray[0];
-        arrivalDate = dateTimeArray[1];
-      });
-
       var lat0, lat1, long0, long1;
 
-      data.match(/<latitude>(.*?)<\/latitude>/g).map(function(val){
-        var latArray = val.replace(/<\/?latitude>/g,'');
-        lat0 = latArray[0];
-        lat1 = latArray[1];
-      });
+      var lat0raw = data.match(/<latitude>(.*?)<\/latitude>/g)[0];
+      var lat1raw = data.match(/<latitude>(.*?)<\/latitude>/g)[1];
+      lat0 = lat0raw.replace(/<\/?latitude>/g,'');
+      lat1 = lat1raw.replace(/<\/?latitude>/g,'');
 
-      data.match(/<longitude>(.*?)<\/longitude>/g).map(function(val){
-        var longArray = val.replace(/<\/?longitude>/g,'');
-        long0 = longArray[0];
-        long1 = longArray[1];
-      });
-
-      // console.log("lat0: " + lat0);
-      // console.log("lat1: " + lat1);
-      // console.log("long0: " + long0);
-      // console.log("long1: " + long1);
+      var long0raw = data.match(/<longitude>(.*?)<\/longitude>/g)[0];
+      var long1raw = data.match(/<longitude>(.*?)<\/longitude>/g)[1];
+      long0 = long0raw.replace(/<\/?longitude>/g,'');
+      long1 = long1raw.replace(/<\/?longitude>/g,'');
 
       distance = calculateDistance(lat0, long0, lat1, long1);
 
@@ -155,15 +142,15 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
         price = val.replace(/<\/?total-cost>/g,'');
       });
 
-      // console.log("Here's the parsed data:");
+      console.log("Here's the parsed data:");
       console.log("origin: " + origin);
       console.log("destination: " + destination);
-      // console.log("distance: " + distance);
+      console.log("distance: " + distance);
       console.log("price: " + price);
-      // console.log("carbon: " + carbon);
-      // console.log("departureDate: " + departureDate);
-      // console.log("arrivalDate: " + arrivalDate);
-      // console.log("duration: " + duration);
+      console.log("carbon: " + carbon);
+      console.log("departureDate: " + departureDate);
+      console.log("arrivalDate: " + arrivalDate);
+      console.log("duration: " + duration);
     });
   }
 }));
