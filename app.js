@@ -86,6 +86,9 @@ function calculateDistance(lat1,lon1,lat2,lon2) {
   return d;
 }
 
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 
 app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
