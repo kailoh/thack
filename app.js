@@ -148,18 +148,23 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
 
       data.match(/<provider-details><name>(.*?)<\/name>/g).map(function(val){
         var airlineRaw = val.replace(/<\/?name>/g,'');
-        var airline = airlineRaw.substring(18,airlineRaw.length);
+        airline = airlineRaw.substring(18,airlineRaw.length);
       });
+
+      carbon = distance*Math.random()*5
+      rewards = Math.floor(distance*Math.random()*2+700)
 
       console.log("Here's the parsed data:");
       console.log("origin: " + origin);
       console.log("destination: " + destination);
       console.log("distance: " + distance);
       console.log("price: " + price);
-      console.log("carbon: " + distance*5);
+      console.log("carbon: " + carbon);
       console.log("departureDate: " + departureDate);
       console.log("arrivalDate: " + arrivalDate);
       console.log("duration: " + duration);
+      console.log("airline: " + airline);
+      console.log("rewards: " + rewards);
 
       //save the flight
       var newFlight = new flight.Flight({
@@ -167,11 +172,11 @@ app.use(multer({ dest: path.join(__dirname, 'uploads'),
           destination : destination,
           distance : distance,
           price : price,
-          carbon : distance*Math.random()*5,
+          carbon : carbon,
           departureDate: departureDate,
           arrivalDate: arrivalDate,
           airline: airline,
-          rewards: Math.floor(distance*Math.random()*2+700)
+          rewards: rewards
         });
 
         newFlight.save(function(err, flight){
