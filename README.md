@@ -8,4 +8,4 @@
 
 ##Production
 
-App is running in production at https://murmuring-harbor-7315.herokuapp.com/
+App is running in production at https://blooming-ridge-5358.herokuapp.com/
